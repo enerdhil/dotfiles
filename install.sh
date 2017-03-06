@@ -34,14 +34,19 @@ if [ $FORCE == 1 ] || ask "ZSH config"; then
 	elif command -v curl >/dev/null 2>&1; then
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	else
-		echo "Don't have curl or wget, install oh-my-zsh manually."
-		exit 1
+		"Don't have curl or wget, install one, or install oh-my-zsh manually"
 	fi
-
+	cp -rv custom $HOME/.oh-my-zsh/
+	if ask "zsh with remote config files"; then
+		cp -v zshrc $HOME/.zshrc
+	else
+		cp -v zshrc_for_remote $HOME/.zshrc
+	fi
 	echo
 else
 	echo "Skipping zsh config install"
 fi
+
 # Hosts file
 if [ $FORCE -eq 1 ] || ask "hosts file"; then
 	echo "Installing hosts file for ssh completion"
@@ -50,6 +55,16 @@ if [ $FORCE -eq 1 ] || ask "hosts file"; then
 else
 	echo "Skipping hosts file install"
 fi
+
+# Vim config files
+if [ $FORCE -eq 1 ] || ask "vim config"; then
+	echo "Installing vim config"
+	cp -v vimrc $HOME/.vimrc
+	cp -rv vim $HOME/.vim
+else
+	echo "Skipping vim config install"
+fi
+
 
 # IRB config files
 if [ $FORCE == 1 ] || ask "IRB config"; then
