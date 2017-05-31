@@ -50,6 +50,9 @@ fi
 export MAIL42=jhezard@student.42.fr
 export USER42=jhezard
 
+# Needed for GPG to work
+export GPG_TTY=$(tty)
+
 # Background processes aren't killed on exit of shell
 setopt AUTO_CONTINUE
 
