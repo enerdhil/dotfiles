@@ -11,10 +11,10 @@ else
 fi
 
 local current_dir='%{$terminfo[bold]$fg[blue]%} %~%{$reset_color%}'
-local git_branch='$(git_prompt_info)%{$reset_color%}'
+local git_branch='$(git_prompt_info)$reset_color'
 
 PROMPT="╭─${user_host} ${current_dir} ${git_branch} %B${return_code}%b
-╰─%B$bg[red]$FG[232][REMOTE]%{$reset_color%}${user_symbol}%b "
+╰─%B%{$bg[red]$FG[232]%}[REMOTE]%{$reset_color%}${user_symbol}%b "
 RPROMPT='[%*]'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
